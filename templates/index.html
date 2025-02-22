@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulldozer Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🛠️ Bulldozer Price Predictor 🚜</h1>
+        <form method="POST">
+            <label for="YearMade">Year Made:</label>
+            <input type="number" name="YearMade" required>
+
+            <label for="ProductSize">Product Size:</label>
+            <select name="ProductSize" required>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+
+            <label for="SaleYear">Sale Year:</label>
+            <input type="number" name="SaleYear" required>
+
+            <label for="fiModelDesc">Model Description:</label>
+<select name="fiModelDesc" required>
+    <option value="521D" {% if request.form['fiModelDesc'] == '521D' %} selected {% endif %}>521D</option>
+    <option value="950FII" {% if request.form['fiModelDesc'] == '950FII' %} selected {% endif %}>950FII</option>
+    <option value="226" {% if request.form['fiModelDesc'] == '226' %} selected {% endif %}>226</option>
+    <option value="PC120-6E" {% if request.form['fiModelDesc'] == 'PC120-6E' %} selected {% endif %}>PC120-6E</option>
+    <option value="S175" {% if request.form['fiModelDesc'] == 'S175' %} selected {% endif %}>S175</option>
+    <option value="310G" {% if request.form['fiModelDesc'] == '310G' %} selected {% endif %}>310G</option>
+    <option value="790ELC" {% if request.form['fiModelDesc'] == '790ELC' %} selected {% endif %}>790ELC</option>
+    <option value="416D" {% if request.form['fiModelDesc'] == '416D' %} selected {% endif %}>416D</option>
+    <option value="430HAG" {% if request.form['fiModelDesc'] == '430HAG' %} selected {% endif %}>430HAG</option>
+    <option value="988B" {% if request.form['fiModelDesc'] == '988B' %} selected {% endif %}>988B</option>
+</select>
+
+            <label for="ModelID">Model ID:</label>
+            <input type="number" name="ModelID" required>
+
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if prediction %}
+            <h2 class="result">{{ prediction }}</h2>
+        {% elif error %}
+            <h2 class="error">{{ error }}</h2>
+        {% endif %}
+    </div>
+
+</body>
+</html>
